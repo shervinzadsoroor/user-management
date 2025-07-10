@@ -46,7 +46,7 @@ public class UserInfo extends BaseEntity {
     @Column(name = "FIRSTNAME", length = 100)
     private String firstName;
 
-    @Size(min = 2, max = 100, message = "lastname length must be between 2 and 150")
+    @Size(min = 2, max = 150, message = "lastname length must be between 2 and 150")
     @Column(name = "LASTNAME", length = 150)
     private String lastName;
 

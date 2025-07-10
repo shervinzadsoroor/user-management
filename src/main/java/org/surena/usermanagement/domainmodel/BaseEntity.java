@@ -29,7 +29,7 @@ public class BaseEntity implements Serializable {
 
     @Version
     @Column(name = "VERSION", nullable = false)
-    private int version = 0;
+    private int version;
 
     @NotNull
     @CreatedDate
