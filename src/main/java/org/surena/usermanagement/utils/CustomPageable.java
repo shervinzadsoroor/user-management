@@ -12,6 +12,6 @@ public class CustomPageable<D extends BaseDto> {
     private D searchDto;
     private int page;
     private int size;
-    private String sortBy = "ID";
+    private String sortBy = "id";
     private Sort.Direction direction = Sort.Direction.DESC;
 }
