@@ -10,7 +10,7 @@ import org.surena.usermanagement.utils.CustomPageable;
 public interface UserInfoService
         extends BaseService<UserInfo, UserInfoDto, UserInfoRepository> {
 
-    void save(UserInfoSaveDto dto);
+    Long save(UserInfoSaveDto dto);
 
     void deleteByUsername(UserInfoDeleteDto dto);
 

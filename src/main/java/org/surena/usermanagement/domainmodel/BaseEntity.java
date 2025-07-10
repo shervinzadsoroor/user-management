@@ -12,6 +12,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 @Setter
 @Getter
@@ -53,4 +54,18 @@ public class BaseEntity implements Serializable {
         this.setModifiedDate(new Date());
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        BaseEntity that = (BaseEntity) o;
+        return version == that.version &&
+                Objects.equals(id, that.id) &&
+                Objects.equals(createdDate, that.createdDate) &&
+                Objects.equals(modifiedDate, that.modifiedDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, version, createdDate, modifiedDate);
+    }
 }

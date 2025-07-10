@@ -15,6 +15,7 @@ import org.surena.usermanagement.domainmodel.BaseEntity;
 import org.surena.usermanagement.utils.PasswordService;
 
 import java.io.Serial;
+import java.util.Objects;
 
 @Setter
 @Getter
@@ -52,5 +53,21 @@ public class UserInfo extends BaseEntity {
     //set hashed password from plain password
     public void setPassword(String plainPassword) {
         this.password = PasswordService.hashPassword(plainPassword);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        UserInfo userInfo = (UserInfo) o;
+        return Objects.equals(username, userInfo.username) &&
+                Objects.equals(password, userInfo.password) &&
+                Objects.equals(firstName, userInfo.firstName) &&
+                Objects.equals(lastName, userInfo.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), username, password, firstName, lastName);
     }
 }

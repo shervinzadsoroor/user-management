@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.surena.usermanagement.domainmodel.userinfo.UserInfo;
 import org.surena.usermanagement.dto.userinfo.*;
+import org.surena.usermanagement.exception.DuplicateUsernameException;
 import org.surena.usermanagement.exception.InvalidPasswordException;
 import org.surena.usermanagement.mapper.userinfo.UserInfoMapper;
 import org.surena.usermanagement.repository.interfaces.userinfo.UserInfoRepository;
@@ -29,7 +30,7 @@ public class UserInfoServiceImpl
 
     @Transactional
     @Override
-    public void save(UserInfoSaveDto dto) {
+    public Long save(UserInfoSaveDto dto) {
         validateUsernameUniqueness(dto.getUsername());
         UserInfo entity = new UserInfo();
         entity.setUsername(dto.getUsername());
@@ -37,11 +38,12 @@ public class UserInfoServiceImpl
         entity.setFirstName(dto.getFirstName());
         entity.setLastName(dto.getLastName());
         save(entity);
+        return entity.getId();
     }
 
     private void validateUsernameUniqueness(String username) {
         if (repository.existsByUsername(username))
-            throw new RuntimeException("Username " + username + " already exists");
+            throw new DuplicateUsernameException("Username " + username + " already exists");
     }
 
     @Transactional

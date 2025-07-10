@@ -9,12 +9,13 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.surena.usermanagement.exception.DuplicateUsernameException;
 import org.surena.usermanagement.exception.InvalidPasswordException;
 
 @Slf4j
 @Hidden
 @ControllerAdvice
-public class GlobalExceptionHandler {
+public class CustomExceptionHandler {
 
     @ExceptionHandler(value = OptimisticLockingFailureException.class)
     public ResponseEntity<String> optimisticExceptionHandler(OptimisticLockingFailureException exception) {
@@ -25,6 +26,13 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = InvalidPasswordException.class)
     public ResponseEntity<String> passwordExceptionHandler(InvalidPasswordException e) {
+        String message = e.getMessage();
+        log.error(message);
+        return new ResponseEntity<>(message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(value = DuplicateUsernameException.class)
+    public ResponseEntity<String> duplicateUsernameExceptionHandler(DuplicateUsernameException e) {
         String message = e.getMessage();
         log.error(message);
         return new ResponseEntity<>(message, HttpStatus.INTERNAL_SERVER_ERROR);
