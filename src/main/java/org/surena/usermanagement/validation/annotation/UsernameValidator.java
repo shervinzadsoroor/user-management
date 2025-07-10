@@ -12,8 +12,7 @@ public class UsernameValidator implements ConstraintValidator<UsernameValidation
         if (validate.isValid()) {
             return true;
         }
-        InvalidUsernameException exception = new InvalidUsernameException(validate.getErrorMessage());
-        throw new RuntimeException(exception);
+        throw new InvalidUsernameException(validate.getErrorMessage());
     }
 
     private ValidationDetail validate(String username) {

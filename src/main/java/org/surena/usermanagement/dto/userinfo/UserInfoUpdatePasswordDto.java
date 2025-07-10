@@ -21,5 +21,5 @@ public class UserInfoUpdatePasswordDto extends BaseLightDto {
     private String newPassword;
 
     @NotNull
-    private String newPasswordRepeat;
+    private String newPasswordConfirm;
 }

@@ -1,6 +1,6 @@
 package org.surena.usermanagement.exception;
 
-public class InvalidPasswordException extends RuntimeException{
+public class InvalidPasswordException extends RuntimeException {
 
     public InvalidPasswordException() {
         super();

@@ -20,8 +20,7 @@ public class PasswordValidator implements ConstraintValidator<PasswordValidation
             if (validate.isValid()) {
                 return true;
             }
-            InvalidPasswordException exception = new InvalidPasswordException(validate.getErrorMessage());
-            throw new RuntimeException(exception);
+            throw new InvalidPasswordException(validate.getErrorMessage());
         }
         return true;
     }
