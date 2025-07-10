@@ -6,9 +6,8 @@ import org.surena.usermanagement.dto.BaseDto;
 
 @Setter
 @Getter
-public class UserInfoLoadDto extends BaseDto {
+public class UserInfoSearchDto extends BaseDto {
 
-    private String username;
     private String firstName;
     private String lastName;
 }
