@@ -3,6 +3,7 @@ package org.surena.usermanagement.dto;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.surena.usermanagement.validation.Delete;
 import org.surena.usermanagement.validation.Edit;
 
 @Setter
@@ -12,6 +13,6 @@ public class BaseLightDto {
     @NotNull(groups = Edit.class)
     private Long id;
 
-    @NotNull(groups = Edit.class)
+    @NotNull(groups = {Edit.class, Delete.class})
     private Integer version;
 }
