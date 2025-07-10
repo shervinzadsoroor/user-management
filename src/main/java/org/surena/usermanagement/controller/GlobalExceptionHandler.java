@@ -1,5 +1,6 @@
 package org.surena.usermanagement.controller;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.dao.OptimisticLockingFailureException;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.surena.usermanagement.exception.InvalidPasswordException;
 
 @Slf4j
+@Hidden
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
